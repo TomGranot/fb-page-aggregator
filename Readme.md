@@ -62,7 +62,7 @@ In practice, this script can and should be run on a constant basis to retrieve a
 
 ## `posts.json`
 
-The JSON file we're generating is build as a collection of JSON objects, each object representing a single post, with the following structure:
+The JSON file we're generating is built as a collection of JSON objects, each object representing a single post, with the following structure:
 
 ```json
     "post_id": {
