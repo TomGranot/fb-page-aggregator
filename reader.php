@@ -42,7 +42,7 @@ $updated = `tail -n1 $file`;
 		</div>
 		<div class="row">
 			<div class="col">
-				<h7> <?=$updated;?></h7>
+				<h6> <?=$updated;?></h6>
 			</div>
 		</div>
 		<div class="row">
