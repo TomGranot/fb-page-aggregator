@@ -7,8 +7,6 @@
 
 This small script does exactly one thing: It takes the posts of a certain Facebook page, and stores the ID (and therefore the post link), message and publishing time of each post in a JSON file. If you set up the relevant `cron` job on your server, it will also update itself with new posts as they come along (see the [Setting Up Automatic Updates Using A Job Daemon](https://github.com/tomgs/fb-page-aggregator#setting-up-automatic-updates-using-a-job-daemon) section below). Just for show, I've added a small `reader.php` file that shows the data you can get when using this script. In addition, if you want some background to why I wrote this, check out [Why](https://github.com/tomgs/fb-page-aggregator#why) below.
 
-**This Is An Actively Maintained Repo - Just Open An Issue If There's A Problem**
-
 ## Page Access Is Required For This Script To Work
 
 This script is built around the premise that **you're allowed** to use the [Graph API](https://developers.facebook.com/docs/graph-api/) to access the posts of the page in question. This is not true for everyone anymore - see [Authentication Concerns](https://github.com/tomgs/fb-page-aggregator#authentication-concerns) for more on that topic. If you can't access the page in question, **don't** use this script.
