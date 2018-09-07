@@ -5,7 +5,9 @@
 ![badge 2](https://img.shields.io/badge/FB%20PHP%20SDK-V5.0-green.svg)
 ![badge 2](https://img.shields.io/badge/Repo%20Status-Maintained-blue.svg)
 
-This small script does exactly one thing: It takes the posts of a certain Facebook page, and stores the ID (and therefore the post link), message and publishing time of each post in a JSON file. If you set up the relevant `cron` job on your server, it will also update itself with new posts as they come along (see the [Setting Up Automatic Updates Using A Job Daemon](https://github.com/tomgs/fb-page-aggregator#setting-up-automatic-updates-using-a-job-daemon) section below). Just for show, I've added a small `reader.php` file that shows the data you can get when using this script. In addition, if you want some background to why I wrote this, check out [Why](https://github.com/tomgs/fb-page-aggregator#why) below.
+This small script does exactly one thing: It takes the posts of a certain Facebook page, and stores the ID (and therefore the post link), message and publishing time of each post in a JSON file. If you set up the relevant `cron` job on your server, it will also update itself with new posts as they come along (see the Update Posts section below for more info on that). Just for show, I've added a small `reader.php` file that shows the data available using this script. If you want some background to why I wrote this, check out [Why](https://github.com/tomgs/fb-page-aggregator#why) below.
+
+**This Is An Actively Maintained Repo - Just Open An Issue If There's A Problem**
 
 ## Page Access Is Required For This Script To Work
 
@@ -13,7 +15,7 @@ This script is built around the premise that **you're allowed** to use the [Grap
 
 ## Requirements
 
-1. A [Facebook App](https://developers.facebook.com/docs/apps/) - either with or without the [manage_pages](https://developers.facebook.com/docs/facebook-login/permissions/#reference-manage_pages) permission ([see below]((https://github.com/tomgs/fb-page-aggregator#authentication-concerns))). I will not cover the creation of an app here, nor the proper configuration for Facebook Login, but note that the app can be in any of the [development cycle stages](https://developers.facebook.com/docs/apps/managing-development-cycle/) and should work the same (I've tested this in apps in Development and in Test mode). 
+1. A [Facebook App](https://developers.facebook.com/docs/apps/) - either with or without the [manage_pages](https://developers.facebook.com/docs/facebook-login/permissions/#reference-manage_pages) permission ([see below](https://github.com/tomgs/fb-page-aggregator#authentication-concerns)). I will not cover the creation of an app here, nor the proper configuration for Facebook Login, but note that the app can be in any of the [development cycle stages](https://developers.facebook.com/docs/apps/managing-development-cycle/) and should work the same (I've tested this in apps in Development and in Test mode). 
 2. A valid Facebook App ID and Facebook App Secret - obtained from the app you created above. You will need to input these later in some spots in the script.
 3. A [Facebook Page Access Token](https://developers.facebook.com/docs/facebook-login/access-tokens/#pagetokens) - I've written a small script (see [Usage](https://github.com/tomgs/fb-page-aggregator#usage) below) that helps you get it without too much fuss (borrowing substantially [from the docs](https://developers.facebook.com/docs/php/howto/example_facebook_login)). Note, again, that you need an access token with the proper permissions, so if you don't have the permissions this won't work.
 4. An up-and-running *remote* server (I tested this on an AWS Ubuntu t2.micro instance), with PHP installed. I've tried running this from my local [MAMP](https://www.mamp.info/en/) installation, but I failed to properly configure them in my App's dashboard.
@@ -63,7 +65,7 @@ In practice, this script can and should be run on a constant basis to retrieve a
 
 ## `posts.json`
 
-The JSON file we're generating is built as a collection of JSON objects, each object representing a single post, with the following structure:
+The JSON file we're generating is build as a collection of JSON objects, each object representing a single post, with the following structure:
 
 ```json
     "post_id": {
