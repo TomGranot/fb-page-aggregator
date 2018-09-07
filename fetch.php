@@ -1,5 +1,8 @@
 <?php
 
+// Get the credentials for accessing the FB API (see Readme for details)
+require "config.inc.php";
+
 // Checks for session cookie. If exists - retrieve session ID, if not - create new one.
 session_start();
 
@@ -9,22 +12,21 @@ require_once('vendor/autoload.php' );
 
 // Note that this creates a new Facebook object, which is part of the Facebook library. 
 $fb = new Facebook\Facebook([
-  'app_id'                => 'YOUR_APP_ID',
-  'app_secret'            => 'YOUR_APP_SECRET',
+  'app_id'                => $AppID,
+  'app_secret'            => $AppSecret,
   'default_graph_version' => 'v3.0',
 ]);
 
-// Insert your access token here
-$accessToken = 'YOUR_ACCESS_TOKEN';
-
-// Rids us of having to enter the access token manually all the time
+// Rids us of having to enter the access token manually all the time ($accessToken is brought
+// over from config.inc.php)
 $fb->setDefaultAccessToken($accessToken);
 
 // Store token in session for future use (since we won't have it if we haven't visited login.php in this session)
 $_SESSION['fb_access_token'] = (string) $accessToken;
 
 // Get first 100 pages of the page - in reverse order to ease the create of the array in order
-$res = $fb->get('/YOUR_PAGE_NAME/feed?limit=100&order=reverse_chronological');
+$page_path = $PageName . '/feed?limit=100&order=reverse_chronological';
+$res = $fb->get($page_path);
 // An edge is a set of two points - you can think about it as the line connecting the two
 $edge = $res->getGraphEdge();
 

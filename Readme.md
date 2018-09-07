@@ -39,17 +39,20 @@ As I mentioned, `login.php` should take care of getting a [long-lived access tok
 3. In `login.php`, edit the `getLoginUrl` parameter with the same callback URL you specified in your App's settings. Make sure to include the **full** path to `fb-callback.php` on your server.
 4. In `fb-callback.php`, edit the `validateAppId` with your App ID.
 4. Access `login.php` in a browser, then click the login link and follow the instructions. 
-5. In the last page, you will see the original access token you received from Facebook, and another long-lived access token below. Take the latter and copy it, we'll need it for later. - Note that it also shows exactly how long your token will last.
+5. In the last page, you will see the original access token you received from Facebook, and another long-lived access token below. Take the latter and copy it, we'll need it for later (note that the page also shows exactly how long your token will last - you will need to update it every few months).
 
-### Setting Up `fetch.php`
+### Configuring The Script For Your Page 
 
-Now we need to tell the script which page we want to pull the posts from.
+`config.inc.php` is a credentials file, used to store all your personal App details. Just open it and fill in your App ID, App Secret, Access Token in the right places. 
 
-1. Open `fetch.php` in a text editor.
-2. Edit the `Facebook/Facebook` object with your App ID and your App Secret.
-3. Edit `$accessToken` with the access token acquired in the previous stage.
-4. Edit `$fb->get` with the *name* of your FB page (if your page's address is `https://www.facebook.com/Squidward/`, then your page's name is Squidward).
-5. Access `fetch.php` from a web browser, and let it do its thing. Note: it can take 10-15 seconds on a relatively fast connection for the script to run while it fetched, arranges and stores the posts in `posts.json`. 
+In addition, fill in the *name* of your FB page. The name of the page can be obtained from its URL - for example, if your page's address is `https://www.facebook.com/SquidWard/`, then your page's name is `SquidWard`.
+
+
+### Fetching All Posts
+
+Now we need to tell the script to pull the posts - access `fetch.php` from a web browser, and let it do its thing. The errors should be pretty self-explanatory - if they're not, open up an issue and I'll take a look.
+
+**Note**: it can take 10-15 seconds on a relatively fast connection for the script to run while it fetches, arranges and stores the posts in `posts.json`. 
 
 ### Seeing The Posts
 
@@ -87,7 +90,7 @@ Since the [Facebook-Cambridge Analytica thing exploded](https://en.wikipedia.org
 
 1. **File Permissions:** Make sure `fetch.php` can access `posts.json` and `fetch.log` - i.e. make sure the file has the correct permissions (on linux machines).
 2. **`reader.php` crashing:** At least twice during my testing I messed up a `posts.json` file by appending things that I shouldn't have to it. If you get errors while reading the posts in `reader.php`, it's almost always due to a `posts.json` problem. Delete the current file and start anew.
-3. **Facebook API Errors:** If at any point you've crossed the FB API query limit, you're gonna get a [Graph API Error #4](https://stackoverflow.com/questions/28554422/facebook-graph-api-4-error-application-request-limit-reached). When that happens - wait for 10-20 minutes and try again. 
+3. **Facebook API Errors:** If at any point you've crossed the FB API query limit, you're gonna get a [Graph API Error #4](https://stackoverflow.com/questions/28554422/facebook-graph-api-4-error-application-request-limit-reached). When that happens - wait for 10-20 minutes and try again.
 
 ## Why
 
